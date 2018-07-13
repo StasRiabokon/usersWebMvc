@@ -1,0 +1,48 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>User</title>
+        <link rel="stylesheet" 
+              type="text/css" 
+              th:href="@{http://localhost:8080/UserWebMvc/css/style.css}" ></link>
+        <link rel="stylesheet" th:href="@{https://www.w3schools.com/w3css/4/w3.css}"></link>
+        <link rel="icon" type="image/x-icon" th:href="@{favicon.ico}"></link>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css}"></link>
+        <!-- Optional theme -->
+        <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css}"></link>
+
+    </head>
+    <body>
+        <div class="container">
+            <h1>Users List
+                <a th:href="@{/users/add}" class="w3-button w3-medium w3-black">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                </a>
+            </h1>
+            <hr>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Full Name</th>
+                            <th>Birthday</th>
+                            <th>Login</th>
+                            <th>Email</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="user : ${users}">
+                            <td th:text="${user.firstname}"></td>
+                            <td th:text="${user.birth}"></td>
+                            <td th:text="${user.login}"></td>
+                            <td th:text="${user.email}"></td>
+                            <td>
+                                <a th:href="@{'/users/' + ${user.id}}">Show Detail</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+        </div>
+    </body>
+</html>
