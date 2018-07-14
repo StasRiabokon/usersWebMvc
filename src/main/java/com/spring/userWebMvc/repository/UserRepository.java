@@ -14,7 +14,6 @@ import org.springframework.stereotype.Repository;
  *
  * @author stas
  */
-@Repository
 public interface UserRepository {
 
     public List<User> findAll();

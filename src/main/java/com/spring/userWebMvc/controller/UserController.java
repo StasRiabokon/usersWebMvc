@@ -22,12 +22,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class UserController {
 
+    @Autowired(required = false)
     private UserService service;
-
-    @Autowired
-    public UserController(UserService service) {
-        this.service = service;
-    }
 
     @GetMapping("/users/add")
     public String createUser(Model model) {

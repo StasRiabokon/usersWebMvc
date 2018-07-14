@@ -17,14 +17,11 @@ import org.springframework.stereotype.Service;
  *
  * @author stas
  */
+@Service
 public class UserServiceImpl implements UserService {
 
+    @Autowired(required = false)
     private UserRepository repository;
-
-    @Autowired
-    public UserServiceImpl(UserRepository repository) {
-        this.repository = repository;
-    }
 
     @Override
     public List<User> getAllUsers() {

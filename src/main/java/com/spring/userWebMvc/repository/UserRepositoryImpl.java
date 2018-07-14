@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
  *
  * @author stas
  */
+@Repository
 public class UserRepositoryImpl implements UserRepository {
 
     @Override
