@@ -1,0 +1,1 @@
+insert into User (id,  firstname,  lastname,  birth,  login,  password,  about,  address,  email) values (1, 'Stas', 'Ryabokon', '1997-06-05', 'Stasyany4', '05061997', 'Junior Java Devveloper', 'Kyiv', 'ya.stas.rybokon@gmail.com');

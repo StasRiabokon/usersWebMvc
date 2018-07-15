@@ -7,8 +7,6 @@ package com.spring.userWebMvc.repository;
 
 import com.spring.userWebMvc.model.User;
 import java.util.List;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 /**
  *
@@ -21,6 +19,8 @@ public interface UserRepository {
     public User findById(Long id);
 
     public User save(User user);
+
+    public User update(User user);
 
     public void deleteById(Long id);
 

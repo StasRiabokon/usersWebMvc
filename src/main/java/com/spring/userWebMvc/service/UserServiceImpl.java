@@ -9,8 +9,6 @@ import com.spring.userWebMvc.model.User;
 import com.spring.userWebMvc.repository.UserRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 /**
@@ -36,6 +34,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User addUser(User user) {
         return repository.save(user);
+    }
+
+    @Override
+    public User updateUser(User user) {
+        return repository.update(user);
     }
 
     @Override

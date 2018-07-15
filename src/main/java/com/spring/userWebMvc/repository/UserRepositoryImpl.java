@@ -1,15 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.spring.userWebMvc.repository;
 
 import com.spring.userWebMvc.model.User;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
+import java.io.Serializable;
 import java.util.List;
+import javax.transaction.Transactional;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -17,45 +14,42 @@ import org.springframework.stereotype.Repository;
  * @author stas
  */
 @Repository
+@Transactional
 public class UserRepositoryImpl implements UserRepository {
+
+    @Autowired(required = false)
+    private SessionFactory sessionFactory;
+
+    private Session currentSession() {
+        return sessionFactory.getCurrentSession();
+    }
 
     @Override
     public List<User> findAll() {
-        User user = new User();
-        user.setAbout("about");
-        user.setAddress("address");
-        user.setBirth(new Date());
-        user.setEmail("email");
-        user.setFirstname("fistname");
-        user.setId(1L);
-        user.setLastname("lastname");
-        user.setLogin("login");
-        user.setPassword("pass");
-        return new ArrayList<>(Arrays.asList(user));
+        return currentSession().createQuery("FROM User").list();
+
     }
 
     @Override
     public User findById(Long id) {
-        User user = new User();
-        user.setAbout("about");
-        user.setAddress("address");
-        user.setBirth(new Date());
-        user.setEmail("email");
-        user.setFirstname("fistname");
-        user.setId(1L);
-        user.setLastname("lastname");
-        user.setLogin("login");
-        user.setPassword("pass");
-        return user;
+        return currentSession().get(User.class, id);
     }
 
     @Override
     public User save(User user) {
-        return user;
+        Serializable id = currentSession().save(user);
+        return new User((Long) id, user.getFirstname(), user.getLastname(), user.getBirth(),
+                user.getLogin(), user.getPassword(), user.getAbout(), user.getAddress(), user.getEmail());
+    }
+
+    @Override
+    public User update(User user) {
+        return (User) currentSession().merge(user);
     }
 
     @Override
     public void deleteById(Long id) {
+        currentSession().delete(findById(id));
 
     }
 

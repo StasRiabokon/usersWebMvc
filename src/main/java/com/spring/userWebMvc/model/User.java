@@ -1,17 +1,13 @@
 package com.spring.userWebMvc.model;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
+import javax.persistence.Table;
+
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -24,10 +20,12 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Table
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "firstname")
@@ -54,17 +52,5 @@ public class User {
 
     @Column(name = "email")
     private String email;
-
-    public User(String firstname, String lastname, Date birth, String login, String password, String about, String address, String email) {
-        super();
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.birth = birth;
-        this.login = login;
-        this.password = password;
-        this.about = about;
-        this.address = address;
-        this.email = email;
-    }
 
 }

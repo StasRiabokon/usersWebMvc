@@ -15,12 +15,11 @@
     </head>    
     <body
         <div class="container">
-            <h1>Edit User</h1>
+            <h1>Add User</h1>
             <hr>  
                 <div class="row">
                     <div class="col-md-6">
-                        <form th:action="@{/users/update}" th:object="${user}" method="post">
-                            <input type="hidden" th:field="*{id}" name="id" />
+                        <form th:action="@{/users/save}" th:object="${user}" method="post">
                             <div class="form-group">
                                 <label for="name">First Name</label>
                                 <input type="text" class="form-control" placeholder="Enter your name" th:field="*{firstname}" name="firstname" required>
